@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% include 'base/css.html' %}
+    {% block title %}<title>HoneyBox Boutique</title>{% endblock %}
+    {% load static %}
+    <link rel="icon"  href="{% static 'img/favi-180.ico' %}" type="image/x-icon">
+  </head>
+
+
+  <body>
+
+    <!-- Nav Bar --> 
+    {% block navbar %}
+    {% include 'base/navbar.html' %}
+    {% endblock %}
+    <!-- /Nav Bar --> 
+
+
+      <!-- Breadcrumbs -->
+      <div class="breadcrumbs">
+        {% block breadcrumbs %}
+        {% endblock %}
+      </div>
+      <!-- Breadcrumbs -->
+
+
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}
+    <!-- Footer -->
+    {% include 'base/footer.html' %}
+    {% endblock %}
+    <!-- Optional JavaScript -->
+    {% include 'base/js.html' %}
+    {% block javascript %}
+    {% endblock %}
+  </body>
+</html>

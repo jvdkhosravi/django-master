@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>My Account | HoneyBox Boutique</title>{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h2>My Account</h2>
+        <p>Welcome, {{ user.email }}! To manage your information and preferences or to see your order history, please use the options below.</p>
+    </div>
+</div>
+</div> <!-- Container-->
+<div class="container-fluid">
+<div class="row">
+    <div class="col-12 col-md-3 col-lg-2 text-center">
+        <a class="btn btn-block btn-outline-secondary active" href="{% url 'users:dashboard' %}">Account
+        </a>
+        <a class="btn btn-block btn-outline-secondary" href="{% url 'users:dashboard_addresses' %}">Addresses
+        </a>
+        <a class="btn btn-block btn-outline-secondary" href="{% url 'users:dashboard_payment_methods' %}">Saved Cards
+        </a>
+        <a class="btn btn-block btn-outline-secondary" href="{% url 'users:dashboard_orders' %}">Orders
+        </a>
+        <br>
+    </div>
+    <div class="col-md-5 text-center">
+        <div class="row">
+            <div class="col-12">
+                <h4>My Account Information</h4>
+            </div>
+        </div>
+        {% include 'users/snippets/user_account_info_form.html' with form=form %}
+    </div>
+    <div class="col-sm-12 col-md-3 text-center">
+        <a class="btn badge-secondary" href="{% url 'users:password_reset' %}">Reset Password</a>
+    </div>
+<div>
+</div>
+
+{% endblock %}

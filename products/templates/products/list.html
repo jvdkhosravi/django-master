@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+<!-- Picture/Advertisement for category -->
+<!-- Picture/Advertisement for category -->
+{% block title %}
+<title>{{ category }} | HoneyBox Boutique</title>
+{% endblock %}
+<!-- Breadcrumbs -->
+{% block breadcrumbs %}
+    <a href="{% url 'homepage:home' %}">Home</a>
+    >
+    <a href="{% url 'products:list' %}">Shop</a>
+    >
+    <a href="{% url 'products:list' %}{{view.kwargs.category}}">{{ category }}</a>
+        {% if category_image_obj %}
+        <img class="border-custom" src="{{ category_image_obj.categoryImagePath.url }}" alt="category image" style="width:100%">
+        {% else %}
+        <h1 class="text-center">{{ category }}</h1>
+        {% endif %}
+{% endblock %}
+<!-- Breadcrumbs -->
+
+<!-- Category Page Header -->
+<!-- Category Page Header -->
+<!-- Sorting Sidebar -->
+<!-- Sorting Sidebar -->
+<!-- Number search results -->
+{% block content %}
+{% load product_extras %}
+{% load humanize %}
+        <!-- Category Name Header -->
+        <!-- Category Name Header -->
+
+        <!-- Sorting drop down menu -->
+        <!-- Sorting drop down menu -->
+
+        <!-- Product Cards -->
+        <div class="row">
+        {% for product in product_list %}
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a class="text-center" href="{{ product.get_absolute_url }}">
+                        <img style="width:100%" src="{{ product.productcolor_set.first.productimage_set.first.productImagePath.url }}" alt="{{ product.productName }}">
+                    </a>
+
+                    <h2 class="text-center">{{product.productName}}</h2>
+
+                    {% if product.productDiscountAmount %}
+
+                    <div class="text-center">
+                        <s class="text-danger">${{ product.productBasePrice }}</s>
+                        <p>${{ product.productSalePrice }}</p>
+                    </div>
+                    
+                    {% else %}
+
+                    <div class="text-center">
+                        <p>${{ product.productSalePrice }}</p>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <hr>
+        <!-- Product Cards -->
+
+        <!-- Pagination. Django has a Paginator module/template at https://docs.djangoproject.com/en/2.1/topics/pagination/#using-paginator-in-view -->
+        <!-- Pagination -->
+
+{% endblock %}

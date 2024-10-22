@@ -1,0 +1,124 @@
+
+<table style="width:70%" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr align="center">
+        <td>
+            <img  src="http://test.honeybox.bucket.s3-website.us-east-2.amazonaws.com/img/logo_white_background.png" alt="Product Image" height="101" width="123">
+        </td>
+    </tr>
+</table>
+<br>
+<table style="width:70%" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr align="center">
+        <td>
+            <p>{{ sale_obj.saleBillingProfile }}, your order has been shipped!</p>
+            <p>Your order number is: {{ sale_obj.saleStringID }}</p>
+            <a href="{{ sale_obj.shipment_set.first.shipmentTrackingURL }}">Track Order</a>
+        </td>
+    </tr>
+</table>
+<br>
+<table style="width:70%" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr align="center">
+      <td>
+        <td><h2>Address Information</h2></td>
+      </td>
+    </tr>
+ </table>
+ <table style="width:70%" align="center">
+ <tr align="center">
+        <td align="center">
+            <h3>Shipping Address:</h3>
+            <p>{{ sale_obj.saleShippingAddress.addressLine1 }}</p>
+            <p>{{ sale_obj.saleShippingAddress.addressCity }}, {{ sale_obj.saleShippingAddress.addressState }} {{ sale_obj.saleShippingAddress.addressPostalCode }}</p>
+            <p>{{ sale_obj.saleShippingAddress.addressCountry }}</p>
+        </td>
+        <td align="center">
+            <h3>Billing Address:</h3>
+            <p>{{ sale_obj.saleBillingAddress.addressLine1 }}</p>
+            <p>{{ sale_obj.saleBillingAddress.addressCity }}, {{ sale_obj.saleBillingAddress.addressState }} {{ sale_obj.saleBillingAddress.addressPostalCode }}</p>
+            <p>{{ sale_obj.saleBillingAddress.addressCountry }}</p>
+        </td>
+    </tr>
+ </table>
+ <table style="width:70%" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr align="center">
+      <td>
+        <td><h2>Payed With:      {{ sale_obj.salePaymentCard.cardBrand }}</h2></td>
+      </td>
+    </tr>
+ </table>
+ <br> 
+ <table style="width:70%" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr align="center">
+      <td>
+        <td><h2>Order Items</h2></td>
+      </td>
+    </tr>
+ </table>
+ <table style="width:90%" align="center">
+   <tr align="center">
+          <td width="45%">
+              <h3>Item</h3>
+          </td>
+          <td width="15%">
+              <h3>Qty</h3>
+          </td>
+          <td width="20%">
+              <h3>Price</h3>
+          </td>
+          <td width="20%">
+              <h3>Total Price</h3>
+          </td>
+   </tr>
+</table>
+<table style="width:90%" align="center">
+{% for item in sale_obj.saleitems_set.all %}
+    <tr align="center">
+        <td width="11%">
+            <h3>Image</h3>
+        </td>
+        <td width="34%">
+            <p>{{ item.prodStockID.productID }}-{{ item.prodStockID.piSize }}, {{ item.prodStockID.piColor }}</p>
+        </td>
+        <td width="15%">
+            <h3>1</h3>
+        </td>
+        <td width="25%">
+            <p>${{ item.siSalePrice }} </p>
+        </td>
+        <td width="15%">
+            <p>${{ item.siSalePrice }} </p>
+        </td>
+    </tr>
+{% endfor %}
+    <tr align="right">
+        <td width="11%">
+        </td>
+        <td width="34%">
+        </td>
+        <td width="15%">
+        </td>
+        <td width="25%">
+            <p>Subtotal: </p>
+            {% if sale_obj.saleDiscountAmount != 0.00 %}<p>Discount:</p>{% endif %}
+            <p>Shipping:</p>
+            <p>Tax:</p>
+            <p>Total:</p>
+        </td>
+        <td width="15%">
+            <p>${{ sale_obj.saleSubTotal }}</p>
+            {% if sale_obj.saleDiscountAmount != 0.00 %}<p>${{ sale_obj.saleDiscountAmount }}</p>{% endif %}
+            <p>${{ sale_obj.saleShipCostAmountCharged }}</p>
+            <p>${{ sale_obj.saleTaxAmount }}</p>
+            <p>${{ sale_obj.saleTotal }}</p>
+        </td>
+    </tr>
+ </table>
+ <table align="center">
+    <tr>
+        <td>
+            <p>Questions? Feel free to contact us at support@honeyboxboutique.com</p>
+        </td>
+    </tr>
+</table>
+<br>

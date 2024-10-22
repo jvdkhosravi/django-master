@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    </div><!--end of container-->
+    <div class="container-full-width">
+        <a href="{{ big_image_qs.first.bigHomePageImageLink }}" alt="{{ big_image_qs.first.bigHomePageImageAltText }}"><img class="img-fluid" style="width:100%" src="{{ big_image_qs.first.bigHomePageImagePath.url }}"></a>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+        {% for image in image_qs %}
+            <div class="col-sm-12 col-md-6">
+                <a href="{{ image.homePageImageLink }}" alt="{{ image.homePageImageAltText }}">
+                    <img class="img-fluid p-3" style="width:100%" src="{{ image.homePageImagePath.url }}">
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+        <hr>
+
+    </div> <!-- /container -->
+
+
+
+{% endblock %}

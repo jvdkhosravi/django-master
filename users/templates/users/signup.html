@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Sign Up</h1>
+            <br>
+            <form method="POST" action="{% url 'users:signup' next=view.kwargs.next %}">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Sign Up" class="btn btn-small badge-secondary">
+            <input type="hidden" name="next" value="{{ next }}">
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
